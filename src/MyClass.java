@@ -1,19 +1,23 @@
 import java.io.*;
 
 public class MyClass {
-    public static void main(String[] args) {
-        String fileName = "example.txt";
-        
-        // Write to the file
+    private String fileName;
+    
+    public MyClass(String fileName) {
+        this.fileName = fileName;
+    }
+    
+    public void writeToFile(String content) {
         try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("Hello, World!");
-            System.out.println("Successfully wrote to the file.");
+            writer.write(content);
+            System.out.println("Successfully wrote to the file "+fileName);
         } catch (IOException e) {
             System.out.println("An error occurred while writing to the file.");
             e.printStackTrace();
         }
-        
-        // Read from the file
+    }
+    
+    public String readFromFile() {
         try (FileReader reader = new FileReader(fileName)) {
             int character;
             StringBuilder content = new StringBuilder();
@@ -23,15 +27,18 @@ public class MyClass {
             }
             
             System.out.println("File content: " + content);
+            return content.toString();
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file.");
             e.printStackTrace();
+            return null;
         }
-        
-        // Append to the file
+    }
+    
+    public void appendToFile(String content) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
-            writer.write("\nAppended text!");
-            System.out.println("Successfully appended to the file.");
+            writer.write("\n" + content);
+            System.out.println("Successfully appended to the file "+fileName);
         } catch (IOException e) {
             System.out.println("An error occurred while appending to the file.");
             e.printStackTrace();
