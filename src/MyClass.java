@@ -26,7 +26,7 @@ public class MyClass {
                 content.append((char) character);
             }
             
-            System.out.println("File content: " + content);
+//            System.out.println("File content: " + content);
             return content.toString();
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file.");
